@@ -2,18 +2,16 @@ const express = require('express');
 // create a new app
 const app = express();
 
+// the former is the connection string configured in production env (e.g. on Heroku or .env file), the later is local db
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp'
+
 // import and configure dotenv for development mode
-// process.env now has the keys and values we defined in .env file
-let dbUrl;
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
     // development db
-    dbUrl = 'mongodb://localhost:27017/yelp-camp';
 } else {
     // trust first proxy
     app.set('trust proxy', 1);
-    // production db
-    dbUrl = process.env.DB_URL;;
 }
 
 const path = require('path');
@@ -102,7 +100,7 @@ app.use(
 const MongoStore = require('connect-mongo');
 const store = new MongoStore({
     mongoUrl: dbUrl,
-    secret: process.env.SECRET,
+    secret: process.env.SECRET || 'thisisasecret',
     // update session only one time in a period of 24 hours if there is no change in session
     touchAfter: 24 * 60 * 60
 });
@@ -112,7 +110,7 @@ store.on('error', (e) => console.log("Session store error:", e));
 const sessionConfig = {
     // change the default name to something else
     name: 'status',
-    secret: process.env.SECRET,
+    secret: process.env.SECRET || 'thisisasecret',
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -182,7 +180,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err });
 });
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Serving on port ${port}`);
 })
