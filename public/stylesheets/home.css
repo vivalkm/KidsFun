@@ -1,0 +1,43 @@
+body {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url('https://images.unsplash.com/photo-1504966981333-1ac8809be1ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+.navbar-brand, .navbar-brand:hover {
+    color: white;
+    padding-bottom: 1rem;
+}
+
+.nav-link {
+    padding: 0.25rem 0;
+    color: rgba(255,255,255,0.5);
+    margin-left: 1rem;
+    border-bottom: 0.15rem solid transparent;
+}
+
+.nav-link.active {
+    color: white;
+    border-bottom-color: white;
+}
+
+.nav-link:hover {
+    border-bottom-color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.5);
+}
+
+.cover-container {
+    max-width: 60vw;
+}
+
+.lead {
+    width: 70%;
+    margin: 2rem auto;
+}
+
+.btn-secondary {
+    color: #333;
+    background-color: rgba(255,255,255,0.7);
+}
