@@ -15,7 +15,7 @@ const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
         // folder name where the uploaded asset will be stored
-        folder: 'YelpCamp',
+        folder: 'KidsFun',
         // formats that are allowed for uploading
         allowed_formats: ['jpeg', 'png', 'jpg']
     },

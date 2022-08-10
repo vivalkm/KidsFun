@@ -17,7 +17,7 @@ module.exports.register = async (req, res, next) => {
         // login the user after register
         req.login(registeredUser, err => {
             if (err) return next(err);
-            req.flash('success', 'Welcome to yelpcamp');
+            req.flash('success', 'Welcome to kidsfun');
             res.redirect('./campgrounds');
         })
     } catch (e) {
@@ -34,7 +34,7 @@ module.exports.renderLoginFrom = (req, res) => {
 
 // login
 module.exports.login = async (req, res, next) => {
-    req.flash('success', 'Welcome back to yelpcamp');
+    req.flash('success', 'Welcome back to kidsfun');
     // get the url that triggers login if exists, this is what we stored in session via isLoggedIn middleware
     const redirectUrl = req.session.returnTo || './campgrounds';
     // remove the url from session

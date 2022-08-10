@@ -4,7 +4,7 @@ const catchAsync = require('../utils/catchAsync');
 const reviews = require('../controllers/reviews');
 const { isLoggedIn, isReviewAuthor, validateReview } = require('../middleware');
 
-// create review for a given campground
+// create review for a given activity
 router.post('/', isLoggedIn, validateReview, catchAsync(reviews.create));
 
 // delete a given review

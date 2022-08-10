@@ -1,4 +1,4 @@
-const Campground = require('./models/campground');
+const Activity = require('./models/activity');
 const Review = require('./models/review');
 const { campgroundSchema, reviewSchema } = require('./schemas');
 const ExpressError = require('./utils/ExpressError');
@@ -16,10 +16,10 @@ const isLoggedIn = (req, res, next) => {
 
 // check if user is author of camp
 const isCampAuthor = async (req, res, next) => {
-    const camp = await Campground.findById(req.params.id);
+    const camp = await Activity.findById(req.params.id);
     if (!req.user || !camp.author.equals(req.user._id)) {
         // prohibit editing/deleting if user is not the camp's author
-        req.flash("error", "You are not authorized to modify this campground!");
+        req.flash("error", "You are not authorized to modify this activity!");
         res.redirect(`/campgrounds/${req.params.id}`);
     } else {
         next();
@@ -38,7 +38,7 @@ const isReviewAuthor = async (req, res, next) => {
     }
 }
 
-// define a middleware function to validate campground form data on server-side
+// define a middleware function to validate activity form data on server-side
 function validateCampground(req, res, next) {
     // The value is validated against the defined joi schema
     const { error } = campgroundSchema.validate(req.body);

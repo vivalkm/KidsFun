@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 // the former is the connection string configured in production env (e.g. on Heroku or .env file), the later is local db
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp'
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/kidsfun'
 
 // import and configure dotenv for development mode
 if (process.env.NODE_ENV !== "production") {

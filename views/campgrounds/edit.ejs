@@ -6,19 +6,19 @@
 </style>
 
 <div class="row">
-    <h1 class="text-center">Edit Campground</h1>
+    <h1 class="text-center">Edit Activity</h1>
     <div class="col-md-6 offset-md-3">
         <form action="/campgrounds/<%= camp._id %>?_method=PUT" method="POST" class="needs-validation" novalidate
             enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
-                <input class="form-control" type="text" name="campground[title]" id="title" value="<%= camp.title %>"
+                <input class="form-control" type="text" name="activity[title]" id="title" value="<%= camp.title %>"
                     autofocus required>
                 <div class="valid-feedback"> Looks good! </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="location">Location</label>
-                <input class="form-control" type="text" name="campground[location]" id="location"
+                <input class="form-control" type="text" name="activity[location]" id="location"
                     value="<%= camp.location %>" required>
                 <div class="valid-feedback"> Looks good! </div>
             </div>
@@ -31,14 +31,14 @@
                 <div class="input-group">
                     <span class="input-group-text" id="price-label">$</span>
                     <input type="text" class="form-control" placeholder=0.00 aria-label="price"
-                        aria-describedby="price-label" name="campground[price]" id="price" value="<%= camp.price %>"
+                        aria-describedby="price-label" name="activity[price]" id="price" value="<%= camp.price %>"
                         required>
                     <div class="valid-feedback"> Looks good! </div>
                 </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="description">Description</label>
-                <textarea class="form-control" name="campground[description]" id="description"
+                <textarea class="form-control" name="activity[description]" id="description"
                     required><%= camp.description %></textarea>
                 <div class="valid-feedback"> Looks good! </div>
             </div>

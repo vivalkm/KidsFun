@@ -1,17 +1,17 @@
-const Campground = require('../models/campground');
+const Activity = require('../models/activity');
 const Review = require('../models/review');
 
-// create review for a given campground
+// create review for a given activity
 module.exports.create = async (req, res, next) => {
     if (!req.body) {
         throw new ExpressError("Invalid review data", 400);
     } else {
-        const campground = await Campground.findById(req.params.id);
+        const activity = await Activity.findById(req.params.id);
         const review = new Review(req.body.review);
         review.author = req.user._id;
-        campground.reviews.push(review);
+        activity.reviews.push(review);
         await review.save();
-        await campground.save();
+        await activity.save();
         req.flash('success', 'Successfully made a review!');
         res.redirect(`/campgrounds/${req.params.id}`);
     }
@@ -21,8 +21,8 @@ module.exports.create = async (req, res, next) => {
 module.exports.delete = async (req, res, next) => {
     const { id, reviewId } = req.params;
     const review = await Review.findByIdAndDelete(reviewId);
-    const campground = await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-    campground.save();
+    const activity = await Activity.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    activity.save();
     req.flash('success', 'Successfully deleted a review!');
     res.redirect(`/campgrounds/${id}`);
 }

@@ -47,7 +47,7 @@ campgroundSchema.virtual('properties.popupText')
         <span class="text-muted">${this.location}</span>`;
     })
 
-// define campground deletion middleware
+// define activity deletion middleware
 campgroundSchema.post('findOneAndDelete', async function (doc) {
     if (doc) {
         await Review.deleteMany({ _id: { $in: doc.reviews } });
@@ -55,4 +55,4 @@ campgroundSchema.post('findOneAndDelete', async function (doc) {
 })
 
 // export the model
-module.exports = mongoose.model('Campground', campgroundSchema);
+module.exports = mongoose.model('Activity', campgroundSchema);
