@@ -24,7 +24,7 @@ const seedDB = async () => {
             geometry: { "type": "Point", "coordinates": [cities[random1000].longitude, cities[random1000].latitude] },
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, itaque delectus aliquam perspiciatis possimus fugiat fugit rem illo earum praesentium expedita sit nesciunt obcaecati quasi quod laborum, necessitatibus voluptatibus unde.',
             price: randomPrice,
-            author: '62721faaa32108a1d67fa4fa',
+            author: '62f36f980562345c11d0e1ae',
             images: [
                 {
                     filename: 'KidsFun/scott-goodwill-y8Ngwq34_Ak-unsplash_m4kwp9',
