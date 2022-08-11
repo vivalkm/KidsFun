@@ -1,7 +1,7 @@
 body {
     height: 100vh;
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-    url('https://images.unsplash.com/photo-1504966981333-1ac8809be1ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');
+    url('https://res.cloudinary.com/vivalkm/image/upload/v1660202226/KidsFun/photo-1504966981333-1ac8809be1ca_wuk9sd.jpg');
     background-size: cover;
     background-position: center;
 }
