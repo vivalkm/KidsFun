@@ -98,7 +98,7 @@ app.use(
 
 // use MongoDB session store
 const MongoStore = require('connect-mongo');
-const store = new MongoStore({
+const store = MongoStore.create({
     mongoUrl: dbUrl,
     secret: process.env.SECRET || 'thisisasecret',
     // update session only one time in a period of 24 hours if there is no change in session
@@ -145,6 +145,7 @@ const flash = require('connect-flash');
 app.use(flash());
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
+    console.log(res.locals.currentUser);
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();
