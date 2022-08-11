@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const opts = { toJSON: { virtuals: true } };
 
 // define schema
-const campgroundSchema = new Schema({
+const activitySchema = new Schema({
     title: String,
     images: [
         {
@@ -40,7 +40,7 @@ const campgroundSchema = new Schema({
     ]
 }, opts);
 
-campgroundSchema.virtual('properties.popupText')
+activitySchema.virtual('properties.popupText')
     .get(function () {
         return `<strong><a href="/campgrounds/${this._id}">${this.title}</a></strong>
         <br>
@@ -48,11 +48,11 @@ campgroundSchema.virtual('properties.popupText')
     })
 
 // define activity deletion middleware
-campgroundSchema.post('findOneAndDelete', async function (doc) {
+activitySchema.post('findOneAndDelete', async function (doc) {
     if (doc) {
         await Review.deleteMany({ _id: { $in: doc.reviews } });
     }
 })
 
 // export the model
-module.exports = mongoose.model('Activity', campgroundSchema);
+module.exports = mongoose.model('Activity', activitySchema);

@@ -25,7 +25,7 @@ const extension = (joi) => ({
 // extend JOI
 const Joi = BaseJoi.extend(extension);
 
-const campgroundSchema = Joi.object({
+const activitySchema = Joi.object({
     activity: Joi.object({
         title: Joi.string().required().escapeHTML(),
         location: Joi.string().required().escapeHTML(),
@@ -50,7 +50,7 @@ const userSchema = Joi.object({
     }).required()
 });
 
-module.exports = { campgroundSchema, reviewSchema, userSchema };
+module.exports = { activitySchema, reviewSchema, userSchema };
 
 
 

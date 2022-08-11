@@ -1,6 +1,6 @@
 const Activity = require('./models/activity');
 const Review = require('./models/review');
-const { campgroundSchema, reviewSchema } = require('./schemas');
+const { activitySchema, reviewSchema } = require('./schemas');
 const ExpressError = require('./utils/ExpressError');
 
 // check if user is logged in
@@ -41,7 +41,7 @@ const isReviewAuthor = async (req, res, next) => {
 // define a middleware function to validate activity form data on server-side
 function validateCampground(req, res, next) {
     // The value is validated against the defined joi schema
-    const { error } = campgroundSchema.validate(req.body);
+    const { error } = activitySchema.validate(req.body);
 
     // throws error if there is error
     if (error) {

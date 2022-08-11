@@ -27,16 +27,16 @@ const seedDB = async () => {
             author: '62f36f980562345c11d0e1ae',
             images: [
                 {
-                    filename: 'KidsFun/scott-goodwill-y8Ngwq34_Ak-unsplash_m4kwp9',
-                    url: 'https://res.cloudinary.com/vivalkm/image/upload/v1651732273/KidsFun/scott-goodwill-y8Ngwq34_Ak-unsplash_m4kwp9.jpg',
+                    filename: 'YelpCamp/xepzahlywrfojw3t2ubt',
+                    url: 'https://res.cloudinary.com/vivalkm/image/upload/v1651810686/YelpCamp/xepzahlywrfojw3t2ubt.jpg',
                 },
                 {
-                    filename: 'KidsFun/tegan-mierle-fDostElVhN8-unsplash_jagnpm',
-                    url: 'https://res.cloudinary.com/vivalkm/image/upload/v1651732273/KidsFun/tegan-mierle-fDostElVhN8-unsplash_jagnpm.jpg',
+                    filename: 'YelpCamp/ayaeyapeumijrehbxobk',
+                    url: 'https://res.cloudinary.com/vivalkm/image/upload/v1651783112/YelpCamp/ayaeyapeumijrehbxobk.jpg',
                 },
                 {
-                    filename: 'KidsFun/pars-sahin-V7uP-XzqX18-unsplash_rwpsa3',
-                    url: 'https://res.cloudinary.com/vivalkm/image/upload/v1651732273/KidsFun/pars-sahin-V7uP-XzqX18-unsplash_rwpsa3.jpg',
+                    filename: 'YelpCamp/edger4pwusflxo2qx6pj',
+                    url: 'https://res.cloudinary.com/vivalkm/image/upload/v1651777020/YelpCamp/edger4pwusflxo2qx6pj.jpg',
                 }
             ]
         })
