@@ -42,7 +42,7 @@ const activitySchema = new Schema({
 
 activitySchema.virtual('properties.popupText')
     .get(function () {
-        return `<strong><a href="/campgrounds/${this._id}">${this.title}</a></strong>
+        return `<strong><a href="/activities/${this._id}">${this.title}</a></strong>
         <br>
         <span class="text-muted">${this.location}</span>`;
     })

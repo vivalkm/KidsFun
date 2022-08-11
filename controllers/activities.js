@@ -3,15 +3,15 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocoder = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
 const { cloudinary } = require('../cloudinary/config');
 
-// show all campgrounds
+// show all activities
 module.exports.index = async (req, res, next) => {
-    const campgrounds = await Activity.find();
-    res.render('campgrounds/index', { campgrounds });
+    const activities = await Activity.find();
+    res.render('activities/index', { activities });
 }
 
 // form to create a activity
 module.exports.renderNewForm = (req, res) => {
-    res.render('campgrounds/new')
+    res.render('activities/new')
 }
 
 // create a activity
@@ -21,41 +21,41 @@ module.exports.create = async (req, res, next) => {
         limit: 1
     }).send();
 
-    const newCamp = new Activity(req.body.activity);
-    newCamp.author = req.user._id;
-    newCamp.geometry = geodata.body.features[0].geometry;
-    newCamp.images = req.files.map(img => ({ url: img.path, filename: img.filename }));
+    const newActivity = new Activity(req.body.activity);
+    newActivity.author = req.user._id;
+    newActivity.geometry = geodata.body.features[0].geometry;
+    newActivity.images = req.files.map(img => ({ url: img.path, filename: img.filename }));
 
-    await newCamp.save();
+    await newActivity.save();
     req.flash('success', 'Successfully made a new activity!');
-    res.redirect(`/campgrounds/${newCamp._id}`);
+    res.redirect(`/activities/${newActivity._id}`);
 }
 
 // show detail of a given activity
 module.exports.show = async (req, res, next) => {
     // populate across multiple levels
     // a activity has an author and multiple reviews, each review has author
-    const camp = await Activity.findById(req.params.id).populate({
+    const activity = await Activity.findById(req.params.id).populate({
         path: 'reviews',
         populate: {
             path: 'author'
         }
     }).populate('author');
-    if (!camp) {
+    if (!activity) {
         req.flash("error", "Activity not found!");
-        return res.redirect('/campgrounds');
+        return res.redirect('/activities');
     }
-    res.render('campgrounds/show', { camp });
+    res.render('activities/show', { activity });
 }
 
 // form to edit a given activity
 module.exports.renderEditForm = async (req, res, next) => {
-    const camp = await Activity.findById(req.params.id);
-    if (!camp) {
+    const activity = await Activity.findById(req.params.id);
+    if (!activity) {
         req.flash("error", "Activity not found!");
-        return res.redirect('/campgrounds');
+        return res.redirect('/activities');
     }
-    res.render('campgrounds/edit', { camp });
+    res.render('activities/edit', { activity });
 }
 
 // edit a given activity
@@ -63,36 +63,36 @@ module.exports.edit = async (req, res, next) => {
     if (!req.body) {
         throw new ExpressError("Invalid activity data", 400);
     } else {
-        // find the camp
-        let camp = await Activity.findById(req.params.id);
-        // return to campgrounds if the given camp id does not exsit
-        if (!camp) {
+        // find the activity
+        let activity = await Activity.findById(req.params.id);
+        // return to activities if the given activity id does not exsit
+        if (!activity) {
             req.flash("error", "Activity not found!");
-            return res.redirect('/campgrounds');
+            return res.redirect('/activities');
         }
-        camp = await Activity.findByIdAndUpdate(req.params.id, { ...req.body.activity });
+        activity = await Activity.findByIdAndUpdate(req.params.id, { ...req.body.activity });
         if (req.body.deleteImgs && req.body.deleteImgs.length > 0) {
             for (let filename of req.body.deleteImgs) {
                 await cloudinary.uploader.destroy(filename);
             }
-            camp.images = camp.images.filter(img => !req.body.deleteImgs.includes(img.filename));
+            activity.images = activity.images.filter(img => !req.body.deleteImgs.includes(img.filename));
         }
         const imgs = req.files.map(img => ({ url: img.path, filename: img.filename }));
-        camp.images.push(...imgs);
-        await camp.save();
+        activity.images.push(...imgs);
+        await activity.save();
         req.flash('success', 'Successfully updated activity!');
-        res.redirect(`/campgrounds/${req.params.id}`);
+        res.redirect(`/activities/${req.params.id}`);
     }
 }
 
 // delete a given activity
 module.exports.delete = async (req, res, next) => {
-    const camp = await Activity.findById(req.params.id);
-    if (!camp) {
+    const activity = await Activity.findById(req.params.id);
+    if (!activity) {
         req.flash("error", "Activity not found!");
-        return res.redirect('/campgrounds');
+        return res.redirect('/activities');
     }
     await Activity.findByIdAndDelete(req.params.id);
     req.flash('success', 'Successfully deleted a activity!');
-    res.redirect(`/campgrounds`);
+    res.redirect(`/activities`);
 }

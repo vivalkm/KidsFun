@@ -2,7 +2,7 @@ mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
-    center: camp.geometry.coordinates, // starting position [lng, lat]
+    center: activity.geometry.coordinates, // starting position [lng, lat]
     zoom: 9 // starting zoom
 });
 
@@ -16,5 +16,5 @@ map.addControl(new mapboxgl.NavigationControl());
 
 // Create a default Marker and add it to the map.
 const marker1 = new mapboxgl.Marker()
-    .setLngLat(camp.geometry.coordinates)
+    .setLngLat(activity.geometry.coordinates)
     .addTo(map);

@@ -14,13 +14,13 @@ const isLoggedIn = (req, res, next) => {
     next();
 }
 
-// check if user is author of camp
-const isCampAuthor = async (req, res, next) => {
-    const camp = await Activity.findById(req.params.id);
-    if (!req.user || !camp.author.equals(req.user._id)) {
-        // prohibit editing/deleting if user is not the camp's author
+// check if user is author of activity
+const isActivityAuthor = async (req, res, next) => {
+    const activity = await Activity.findById(req.params.id);
+    if (!req.user || !activity.author.equals(req.user._id)) {
+        // prohibit editing/deleting if user is not the activity's author
         req.flash("error", "You are not authorized to modify this activity!");
-        res.redirect(`/campgrounds/${req.params.id}`);
+        res.redirect(`/activities/${req.params.id}`);
     } else {
         next();
     }
@@ -32,14 +32,14 @@ const isReviewAuthor = async (req, res, next) => {
     if (!req.user || !review.author.equals(req.user._id)) {
         // prohibit editing/deleting if user is not the review's author
         req.flash("error", "You are not authorized to modify this review!");
-        res.redirect(`/campgrounds/${req.params.id}`);
+        res.redirect(`/activities/${req.params.id}`);
     } else {
         next();
     }
 }
 
 // define a middleware function to validate activity form data on server-side
-function validateCampground(req, res, next) {
+function validateActivity(req, res, next) {
     // The value is validated against the defined joi schema
     const { error } = activitySchema.validate(req.body);
 
@@ -72,4 +72,4 @@ function validateReview(req, res, next) {
     }
 };
 
-module.exports = { isLoggedIn, isCampAuthor, isReviewAuthor, validateCampground, validateReview };
+module.exports = { isLoggedIn, isActivityAuthor, isReviewAuthor, validateActivity, validateReview };

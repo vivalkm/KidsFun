@@ -18,7 +18,7 @@ module.exports.register = async (req, res, next) => {
         req.login(registeredUser, err => {
             if (err) return next(err);
             req.flash('success', 'Welcome to kidsfun');
-            res.redirect('./campgrounds');
+            res.redirect('./activities');
         })
     } catch (e) {
         // rather than showing the error page, redirect to register and shows the error msg as flash
@@ -36,7 +36,7 @@ module.exports.renderLoginFrom = (req, res) => {
 module.exports.login = async (req, res, next) => {
     req.flash('success', 'Welcome back to kidsfun');
     // get the url that triggers login if exists, this is what we stored in session via isLoggedIn middleware
-    const redirectUrl = req.session.returnTo || './campgrounds';
+    const redirectUrl = req.session.returnTo || './activities';
     // remove the url from session
     delete req.session.returnTo;
     res.redirect(redirectUrl);
@@ -46,5 +46,5 @@ module.exports.login = async (req, res, next) => {
 module.exports.logout = (req, res) => {
     req.logout();
     req.flash('success', 'You have successfully logged out');
-    res.redirect('./campgrounds');
+    res.redirect('./activities');
 }

@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== "production") {
 
 const path = require('path');
 const ExpressError = require('./utils/ExpressError');
-const campgroundRoutes = require('./routes/campgrounds');
+const activityRoutes = require('./routes/activities');
 const reviewRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
 const User = require('./models/user');
@@ -150,8 +150,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/campgrounds', campgroundRoutes);
-app.use('/campgrounds/:id/reviews', reviewRoutes);
+app.use('/activities', activityRoutes);
+app.use('/activities/:id/reviews', reviewRoutes);
 app.use('/', userRoutes);
 
 app.get('/', (req, res) => {

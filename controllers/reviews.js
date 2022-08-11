@@ -13,7 +13,7 @@ module.exports.create = async (req, res, next) => {
         await review.save();
         await activity.save();
         req.flash('success', 'Successfully made a review!');
-        res.redirect(`/campgrounds/${req.params.id}`);
+        res.redirect(`/activities/${req.params.id}`);
     }
 }
 
@@ -24,5 +24,5 @@ module.exports.delete = async (req, res, next) => {
     const activity = await Activity.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     activity.save();
     req.flash('success', 'Successfully deleted a review!');
-    res.redirect(`/campgrounds/${id}`);
+    res.redirect(`/activities/${id}`);
 }

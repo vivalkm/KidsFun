@@ -5,12 +5,12 @@
     <div class="col-6">
         <div id="carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <% for (let i = 0; i < camp.images.length; i++) { %>
+                <% for (let i = 0; i < activity.images.length; i++) { %>
                 <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-                    <img src="<%= camp.images[i].url %>" class="d-block w-100" alt="">
+                    <img src="<%= activity.images[i].url %>" class="d-block w-100" alt="">
                 </div>
                 <% } %>
-                <% if (camp.images.length > 1) { %>
+                <% if (activity.images.length > 1) { %>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -26,24 +26,24 @@
 
         <div class="card mb-3">
             <div class="card-body">
-                <h5 class="card-title"><%= camp.title %></h5>
-                <p class="card-text"><%= camp.description %></p>
+                <h5 class="card-title"><%= activity.title %></h5>
+                <p class="card-text"><%= activity.description %></p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item text-muted"><%= camp.location %></small>
-                <li class="list-group-item">Submitted by: <%= camp.author.username %></small>
-                <li class="list-group-item">Cost: $<%= camp.price %>/visit</li>
+                <li class="list-group-item text-muted"><%= activity.location %></small>
+                <li class="list-group-item">Submitted by: <%= activity.author.username %></small>
+                <li class="list-group-item">Cost: $<%= activity.price %>/visit</li>
             </ul>
-            <% if (currentUser && camp.author.equals(currentUser._id)) { %>
+            <% if (currentUser && activity.author.equals(currentUser._id)) { %>
             <div class="card-body">
-                <a class="btn btn-info" href="/campgrounds/<%= camp._id %>/edit">Edit</a>
-                <form class="d-inline" action="/campgrounds/<%= camp._id %>?_method=DELETE" method="POST">
+                <a class="btn btn-info" href="/activities/<%= activity._id %>/edit">Edit</a>
+                <form class="d-inline" action="/activities/<%= activity._id %>?_method=DELETE" method="POST">
                     <button class="btn btn-danger">Delete</button>
                 </form>
             </div>
             <% } %>
             <div class="card-footer">
-                <a href="/campgrounds">Return to main list</a>
+                <a href="/activities">Return to main list</a>
             </div>
         </div>
     </div>
@@ -53,7 +53,7 @@
         <% if (currentUser) { %>
         <hr>
         <h3>Leave a Review</h3>
-        <form action="/campgrounds/<%= camp._id %>/reviews" method="POST" class="mb-3 needs-validation" novalidate>
+        <form action="/activities/<%= activity._id %>/reviews" method="POST" class="mb-3 needs-validation" novalidate>
             <div class="mb-1">
                 <fieldset class="starability-basic">
                     <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
@@ -80,7 +80,7 @@
         <% } %>
         <hr>
         <h3 class="mt-2">Reviews</h3>
-        <% for (let review of camp.reviews) { %>
+        <% for (let review of activity.reviews) { %>
         <div class="card mb-3">
             <div class="card-body">
                 <h6 class="card-subtitle mb-2"><%= review.author.username %></h6>
@@ -89,7 +89,7 @@
                 </p>
                 <p class="card-text">Review: <%= review.body %></p>
                 <% if (currentUser && review.author.equals(currentUser._id)) { %>
-                <form action="/campgrounds/<%= camp._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                <form action="/activities/<%= activity._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
                     <button class="btn btn-danger">Delete</button>
                 </form>
                 <% } %>
@@ -101,6 +101,6 @@
 
 <script>
     const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
-    const camp = <%- JSON.stringify(camp) %>;
+    const activity = <%- JSON.stringify(activity) %>;
 </script>
 <script src="/javascripts/showPageMap.js"></script>

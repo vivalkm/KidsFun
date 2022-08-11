@@ -18,7 +18,7 @@ const seedDB = async () => {
     for (let i = 0; i < 200; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const randomPrice = Math.floor(Math.random() * 20) + 10;
-        const camp = new Activity({
+        const activity = new Activity({
             title: `${sample(descriptors)} ${sample(places)}`,
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             geometry: { "type": "Point", "coordinates": [cities[random1000].longitude, cities[random1000].latitude] },
@@ -40,7 +40,7 @@ const seedDB = async () => {
                 }
             ]
         })
-        await camp.save();
+        await activity.save();
     }
 }
 
