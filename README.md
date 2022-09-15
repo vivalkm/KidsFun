@@ -13,7 +13,7 @@ https://kidsfun.cyclic.app/
      - Every activity has its detail page showing images, descriptions, price, location, map, and reviews from other users
      - Client side and server side validations
      - All details for each activity can be edited and deleted after creation
-     - [WIP] Fuzzy search using MongoDB Atlas search
+     - Search based on keyword in title and location
 ## Built with
    - ### Front End
      - HTML, CSS, Bootsrap v5.0
