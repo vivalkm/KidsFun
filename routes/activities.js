@@ -3,7 +3,7 @@ const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
 const activity = require('../controllers/activities');
 const { isLoggedIn, isActivityAuthor, validateActivity } = require('../middleware');
-
+//for uploading files
 const multer = require('multer');
 const { storage } = require('../cloudinary/config');
 const upload = multer({ storage });
@@ -16,6 +16,8 @@ router.route('/')
 
 // form to create a activity
 router.get('/new', isLoggedIn, activity.renderNewForm);
+
+router.get('/search', activity.search);
 
 router.route('/:id')
     // show detail of a given activity

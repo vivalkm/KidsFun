@@ -1,5 +1,6 @@
 const Activity = require('../models/activity');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const escapeStringRegexp = require('escape-string-regexp');
 const geocoder = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
 const { cloudinary } = require('../cloudinary/config');
 
@@ -30,6 +31,19 @@ module.exports.create = async (req, res, next) => {
     req.flash('success', 'Successfully made a new activity!');
     res.redirect(`/activities/${newActivity._id}`);
 }
+
+// search activity based on keywords in title and location
+module.exports.search = async (req, res) => {
+    const searchTerm = req.query.q ? escapeStringRegexp(req.query.q) : "";
+    console.log(searchTerm);
+
+    const activities = await Activity.find({
+        $or: 
+        [{title : { $regex: searchTerm, $options: 'i' }}, {location : { $regex: searchTerm, $options: 'i' }}]
+    });
+
+    return res.render('activities/search', { searchTerm, activities });
+};
 
 // show detail of a given activity
 module.exports.show = async (req, res, next) => {

@@ -40,6 +40,11 @@ const activitySchema = new Schema({
     ]
 }, opts);
 
+activitySchema.index({
+    title: "text",
+    location: "text"
+});
+
 activitySchema.virtual('properties.popupText')
     .get(function () {
         return `<strong><a href="/activities/${this._id}">${this.title}</a></strong>

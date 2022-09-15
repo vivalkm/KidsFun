@@ -11,6 +11,11 @@
                 <a class="nav-link" href="/activities">Activities</a>
                 <a class="nav-link" href="/activities/new">New Activity</a>
             </div>
+            <form action="/activities/search" method="GET" class="d-flex my-3 my-lg-0 mx-lg-5">
+                <input name="q" id="search" type="search" placeholder="Search Activities" aria-label="Search"
+                    class="form-control w-100 me-2 bg-dark text-white btn-outline-secondary">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
             <div class="navbar-nav ms-auto">
                 <% if (currentUser) { %>
                 <a class="nav-link" href="/logout">Log out (<%= currentUser.username %>)</a>

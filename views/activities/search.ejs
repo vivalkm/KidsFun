@@ -1,0 +1,40 @@
+<%- layout('layout/boilerplate') %>
+
+<% if (activities.length) { %>
+<h1 class="fs-2 mb-4">
+    Search Results for "<%= searchTerm %>"
+</h1>
+<% } else { %>
+<h2 class="fs-2 mb-4">
+    No results for "<%= searchTerm %>"
+</h2>
+<p>
+    Please try searching again. You can use terms from the activity name or location in your query.
+</p>
+<% } %>
+
+<section class="row d-flex">
+    <% for (let activity of activities) { %>
+    <div class="card mb-3">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <% if (activity.images.length > 0)  { %>
+                <img class="img-fluid rounded  mx-auto"
+                    src="<%= activity.images[Math.floor(Math.random() * activity.images.length)].url %>"
+                    alt="activity img">
+                <% } %>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%= activity.title %></h5>
+                    <p class="card-text"><%= activity.description %></p>
+                    <p class="card-text text-muted">
+                        <small><%= activity.location %></small>
+                    </p>
+                    <a class="btn btn-primary" href="/activities/<%= activity._id %>">View <%= activity.title %></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+</section>
