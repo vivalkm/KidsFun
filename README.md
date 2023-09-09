@@ -1,5 +1,8 @@
 # KidsFun
 KidsFun is a web application where parents can find and share kids friendly activities and adventures.
+
+<img width="500" alt="image" src="https://github.com/vivalkm/KidsFun/assets/83200994/f63e71bb-2ca8-47b8-a613-a75efab95715">
+
 ## Deployment
 https://kidsfun.cyclic.app/
 ## Specifications
