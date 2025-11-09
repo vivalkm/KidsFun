@@ -4,7 +4,7 @@ KidsFun is a web application where parents can find and share kids friendly acti
 <img width="500" alt="image" src="https://github.com/vivalkm/KidsFun/assets/83200994/f63e71bb-2ca8-47b8-a613-a75efab95715">
 
 ## Deployment
-https://kidsfun.cyclic.app/
+https://kidsfun.onrender.com/
 ## Specifications
    - Authentication
      - User can register and login, enabled by passport
@@ -35,4 +35,4 @@ https://kidsfun.cyclic.app/
      - helmet
      - mongoSanitize
      - sanitizeHtml
-### Deployed on cyclic.app, database on MongoDB Atlas
+### Deployed on [Render](https://render.com/), database on [MongoDB Atlas](https://cloud.mongodb.com/)
