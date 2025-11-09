@@ -2,9 +2,6 @@ const express = require('express');
 // create a new app
 const app = express();
 
-// the former is the connection string configured in production env (e.g. on Heroku or .env file), the later is local db
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/kidsfun'
-
 // import and configure dotenv for development mode
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
@@ -13,6 +10,9 @@ if (process.env.NODE_ENV !== "production") {
     // trust first proxy
     app.set('trust proxy', 1);
 }
+
+// MongoDB url
+const dbUrl = process.env.DB_URL
 
 const path = require('path');
 const ExpressError = require('./utils/ExpressError');
